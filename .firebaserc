@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "etowncolorado-website"
+  },
+  "targets": {
+    "etowncolorado-website": {
+      "hosting": {
+        "editor": [
+          "etowncolorado-editor"
+        ],
+        "website": [
+          "etowncolorado-website"
+        ]
+      }
+    }
+  }
+}
