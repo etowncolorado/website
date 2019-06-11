@@ -7,20 +7,21 @@ export default new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {
-      component: () => import('@/view/login.vue'),
-      path: '/login',
-    },
-    {
-      component: () => import('@/view/home.vue'),
-      meta: { auth: true },
-      path: '/',
-      children: [
-        {
-          path: '*',
-          component: () => import('@/view/home.vue'),
-        }
-      ]
-    }
+    { path: '/', component: () => import('@/view/editor.vue') }
+    // {
+    //   component: () => import('@/view/login.vue'),
+    //   path: '/login',
+    // },
+    // {
+    //   component: () => import('@/view/home.vue'),
+    //   meta: { auth: true },
+    //   path: '/',
+    //   children: [
+    //     {
+    //       path: '*',
+    //       component: () => import('@/view/home.vue'),
+    //     }
+    //   ]
+    // }
   ]
 })

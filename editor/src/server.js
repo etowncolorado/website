@@ -1,4 +1,5 @@
 import firebase from 'firebase/app'
+import 'firebase/database'
 import 'firebase/auth'
 
 export default firebase.initializeApp({
@@ -10,7 +11,3 @@ export default firebase.initializeApp({
   messagingSenderId: "155712937603",
   appId: "1:155712937603:web:e624e9971e7cf05d"
 })
-
-// export const authChange = (method) => auth.onAuthStateChanged(method)
-// export const authGoogle = () => new firebase.auth.GoogleAuthProvider()
-// export const authLogin = (provider) => auth.signInWithPopup(provider)
