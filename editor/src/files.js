@@ -1,42 +1,42 @@
-import Vue from 'vue'
-
 export const files = (store, server) => {
   const files = server.database().ref('/files')
 
   store.registerModule('files', {
     namespaced: true,
 
-    state: {},
+    state: {
+      files: []
+    },
 
-    mutations: {
-      // add (state, file) {
-      //   Vue.set(state, file.key, {
-      //     ...file.value,
-      //     local: 
-      //   })
-      // },
-
-      remove (state, key) {
-        Vue.delete(state, key)
+    getters: {
+      file (state) {
+        return (key) => {
+          return state.files.find(
+            (file) => file.key === key
+          )
+        }
       }
     },
 
-    actions: {
-      create (_, file) {
-        files.push({
-          name: file,
-          
-        })
+    mutations: {
+      add (state, file) {
+        state.files.push(file)
+      },
+
+      remove (state, key) {
+        state.files = state.files.filter(
+          (file) => file.key !== key
+        )
       }
     }
   })
 
   files.on('child_added',
     (snap) => {
-      // store.commit('files/add', {
-      //   key: snap.key,
-      //   value: {snap.val()
-      // })
+      store.commit('files/add', {
+        key: snap.key,
+        ...snap.val(),
+      })
     }
   )
 

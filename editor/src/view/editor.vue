@@ -1,7 +1,8 @@
 <script>
   export default {
     components: {
-      monaco: () => import('./monaco.vue')
+      monaco: () => import('./monaco.vue'),
+      explorer: () => import('./explorer.vue')
     }
   }
 </script>
@@ -9,8 +10,7 @@
 <template>
   <div :class="$style.editor">
     <div>
-      <div>
-      </div>
+      <explorer />
     </div>
 
     <div :class="$style.viewport">

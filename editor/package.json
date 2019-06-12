@@ -9,9 +9,12 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "firebase": "^6.1.0",
+    "lodash": "^4.17.11",
     "monaco-editor": "^0.17.0",
+    "rxjs": "^6.5.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
+    "vue-rx": "^6.2.0",
     "vuex": "^3.0.1",
     "vuex-router-sync": "^5.0.0"
   },
