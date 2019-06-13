@@ -17,10 +17,10 @@
 
     data () {
       return {
-        output: 'output',
+        result: 'output',
         files: {
           'log.js': `export const log = (value) => console.log(value)`,
-          'about.js': `import { log } from '../log.js'\nlog("render about")\nreturn 'foo'`,
+          'about.js': `import { log } from '../log.js'\nlog("render about")`,
           'contact.js': `console.log("render contact");`,
         }
       }
@@ -33,6 +33,21 @@
 
       code () {
         return this.files[this.path]
+      },
+
+      input () {
+        return {
+          input: 'about.js',
+          plugins: [
+            virtual(this.files)
+          ]
+        }
+      },
+
+      output () {
+        return {
+          format: 'cjs'
+        }
       }
     },
 
@@ -49,21 +64,13 @@
         500
       ),
 
-      compile () {
-        rollup({
-          input: 'about.js',
-          plugins: [
-            virtual(this.files)
-          ]
-        }).then(
-          (bundle) => bundle.generate({ format: 'cjs' })
-        ).then(
-          (result) => result.output[0].code
-        ).then(
-          (code) => new Function(code)
-        ).then(
-          (method) => this.output = method()
-        )
+      async compile () {
+        var bundle = await rollup(this.input)
+        var result = await bundle.generate(this.output)
+        var code = result.output[0].code
+        var script = new Function(code)
+        this.result = code
+        script()
       }
     }
   }
@@ -72,14 +79,19 @@
 <template>
   <div :class="$style.viewport">
     <h1>Viewport: {{ file }}</h1>
-    <textarea cols="30" rows="10" :value="code" @input="write"></textarea>
-    <div>{{ output }}</div>
+    <textarea :class="$style.input" :value="code" @input="write" />
+    <div>{{ result }}</div>
   </div>
 </template>
 
 <style module>
   .viewport {
     background: orange;
+  }
+
+  .input {
+    width: 800px;
+    height: 600px;
   }
 </style>
 
