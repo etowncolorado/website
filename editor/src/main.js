@@ -1,22 +1,19 @@
-// import { auth } from './auth.js'
-import { files } from './files.js'
-import { sync } from 'vuex-router-sync'
-import router from './router.js'
-import server from './server.js'
-import store from './store.js'
-import VueRx from 'vue-rx'
 import Vue from 'vue'
 
 Vue.config.productionTip = process.env.NODE_ENV === 'production'
-Vue.use(VueRx)
 
-files(store, server)
-sync(store, router)
+const view = require.context('@/view/', true, /\.vue$/)
+view.keys().forEach(
+  (path) => Vue.component(
+    path.slice(0, -4).split('/').pop(),
+    view(path).default
+  )
+)
 
-const app = new Vue({
-  render: (h) => h('router-view'),
-  router,
-  store,
+export const app = new Vue({
+  render (h) {
+    return h('app')
+  }
 })
 
 app.$mount('#app')
