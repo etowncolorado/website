@@ -16,6 +16,21 @@
       ]
     },
     {
+      "target": "content",
+      "public": "content/dist",
+      "rewrites": [
+        {
+          "source": "**",
+          "function": "content"
+        }
+      ],
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    },
+    {
       "target": "website",
       "public": "website/dist",
       "rewrites": [
