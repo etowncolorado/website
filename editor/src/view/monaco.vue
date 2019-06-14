@@ -1,60 +1,51 @@
 <script>
-  // import { editor, Uri } from 'monaco-editor'
-  // import { debounce } from 'lodash'
+  import { editor, Uri } from 'monaco-editor'
+  import { debounce } from 'lodash'
   // import server from '@/server.js'
 
   export default {
-    // mounted () {
-    //   this.file = server.database().ref('/files/-Lh5vVcXWH-hHuIZHPwE')
+    props: ['value'],
 
-    //   document.addEventListener('keydown',
-    //     (event) => {
-    //       if (event.metaKey && event.keyCode === 83) {
-    //         this.file.child('value').set(
-    //           this.model.getValue()
-    //         )
-    //         event.preventDefault()
-    //         return false
-    //       }
-    //     }
-    //   )
+    beforeCreate () {
+      this.model = editor.createModel('', 'javascript')
+    },
 
-    //   this.file.once('value',
-    //     (snap) => {
-    //       var data = snap.val()
+    watch: {
+      value: {
+        immediate: true,
+        handler (value) {
+          this.model.setValue(value)
+        }
+      }
+    },
 
-    //       this.model = editor.createModel(
-    //         data.value,
-    //         data.lang,
-    //         monaco.Uri.file('/' + data.name)
-    //       )
+    mounted () {
+      document.addEventListener('keydown', this.keydown)
 
-    //       this.editor.setModel(this.model)
-    //     }
-    //   )
+      this.editor = editor.create(this.$el, {
+        model: this.model,
+        theme: 'vs-dark',
+        minimap: {
+          enabled: false
+        }
+      })
+    },
 
-    //   this.editor = editor.create(this.$el, {
-    //     theme: 'vs-dark',
-    //     minimap: {
-    //       enabled: false
-    //     }
-    //   })
+    destroyed () {
+      this.model.dispose()
+      this.editor.dispose()
+      document.removeEventListener('keydown', this.keydown)
+    },
 
-    //   this.editor.onDidChangeModelContent(
-    //     debounce(this.update, 750)
-    //   )
-    // },
-
-    // destroyed () {
-    //   this.model.dispose()
-    //   this.editor.dispose()
-    // },
-
-    // methods: {
-    //   update (event) {
-    //     console.log(event)
-    //   }
-    // }
+    methods: {
+      keydown (event) {
+        if (event.metaKey && event.keyCode === 83) {
+          this.$emit('save', this.model.getValue())
+          event.preventDefault()
+          return false
+        }
+      }
+    }
   }
 </script>
 

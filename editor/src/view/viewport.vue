@@ -17,6 +17,7 @@
 
     data () {
       return {
+        script: '',
         result: 'output',
         files: {
           'log.js': `export const log = (value) => console.log(value)`,
@@ -57,8 +58,8 @@
 
     methods: {
       write: debounce(
-        function (event) {
-          this.files[this.path] = event.target.value
+        function (code) {
+          this.files[this.path] = code
           this.compile()
         },
         500
@@ -68,9 +69,11 @@
         var bundle = await rollup(this.input)
         var result = await bundle.generate(this.output)
         var code = result.output[0].code
-        var script = new Function(code)
-        this.result = code
-        script()
+        var script = new Function('module', 'exports', code)
+        var context = { exports: {} }
+        script(context, context.exports)
+        this.result = context.exports.render()
+        this.script = code
       }
     }
   }
@@ -79,8 +82,9 @@
 <template>
   <div :class="$style.viewport">
     <h1>Viewport: {{ file }}</h1>
-    <textarea :class="$style.input" :value="code" @input="write" />
-    <div>{{ result }}</div>
+    <monaco :class="$style.input" :value="code" lang="javascript" :name="path" @save="write" />
+    <remote :data="result"/>
+    <div>{{ script }}</div>
   </div>
 </template>
 
@@ -90,8 +94,8 @@
   }
 
   .input {
-    width: 800px;
-    height: 600px;
+    width: 600px;
+    height: 400px;
   }
 </style>
 
