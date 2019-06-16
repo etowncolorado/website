@@ -6,6 +6,17 @@ module.exports = (path) => `
       <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
       <title>e | town</title>
       <link rel="canonical" href="https://etowncolorado.com">
+      <style>
+        body {
+          margin: 0;
+        }
+
+        .container {
+          display: flex;
+          background: blue;
+          justify-content: center;
+        }
+      </style>
     </head>
     <body>
       <header>
@@ -56,10 +67,11 @@ module.exports = (path) => `
           </figure>
         </section>
 
-        <section>
+        <section class="container">
           <figure>
             <img src="http://placekitten.com/400/300" />
           </figure>
+          
           <h2>Seared Sesame Tuna</h2>
           <p>A beautifully seared tuna with wasabi potato cake, crab guacamole, tempura battered asparagus in an orange ginger sauce.<p>
           <a href="/">See full menu</a>
