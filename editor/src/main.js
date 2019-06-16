@@ -1,3 +1,7 @@
+import server from '@/server.js'
+import finder from '@/finder.js'
+import router from '@/router.js'
+import store from '@/store.js'
 import Vue from 'vue'
 
 Vue.config.productionTip = process.env.NODE_ENV === 'production'
@@ -10,7 +14,11 @@ view.keys().forEach(
   )
 )
 
+finder(store, server)
+
 export const app = new Vue({
+  store,
+  router,
   render (h) {
     return h('app')
   }

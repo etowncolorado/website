@@ -1,7 +1,7 @@
-export const files = (store, server) => {
+export default (store, server) => {
   const files = server.database().ref('/files')
 
-  store.registerModule('files', {
+  store.registerModule('finder', {
     namespaced: true,
 
     state: {
@@ -9,7 +9,7 @@ export const files = (store, server) => {
     },
 
     getters: {
-      file (state) {
+      find (state) {
         return (key) => {
           return state.files.find(
             (file) => file.key === key
@@ -28,12 +28,22 @@ export const files = (store, server) => {
           (file) => file.key !== key
         )
       }
+    },
+
+    actions: {
+      create (context, name) {
+        files.push({ name })
+      },
+
+      trash (context, key) {
+        files.child(key).set(null)
+      }
     }
   })
 
   files.on('child_added',
     (snap) => {
-      store.commit('files/add', {
+      store.commit('finder/add', {
         key: snap.key,
         ...snap.val(),
       })
@@ -41,6 +51,6 @@ export const files = (store, server) => {
   )
 
   files.on('child_removed',
-    (snap) => store.commit('files/remove', snap.key)
+    (snap) => store.commit('finder/remove', snap.key)
   )
 }

@@ -1,5 +1,11 @@
 <script>
+  import { mapActions, mapState } from 'vuex'
+
   export default {
+    computed: {
+      ...mapState('finder', ['files'])
+    },
+
     data () {
       return {
         selection: 'about'
@@ -7,8 +13,10 @@
     },
 
     methods: {
-      select (value) {
-        this.selection = value
+      ...mapActions('finder', ['create', 'trash']),
+
+      select (key) {
+        this.selection = key
       }
     }
   }
@@ -16,9 +24,14 @@
 
 
 <template>
-  <div :class="$style.app" >
-    <explorer :class="$style.explorer" :selection="selection" @select="select" />
-    <viewport :class="$style.viewport" :file="selection"/>
+  <div :class="[$style.system, $style.module]" >
+    <editor
+      v-bind:active="selection"
+      v-bind:files="files"
+      v-on:select="select"
+      v-on:create="create('untitled')"
+      v-on:close="trash"
+    />
   </div>
 </template>
 
@@ -30,7 +43,21 @@
     overflow: hidden;
   }
 
-  .app {
+  .system {
+    --color-1: #FFF;
+    --color-2: #000;
+    --color-3: #CCC;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 4rem;
+    --space-8: 8rem;
+  }
+
+  .module {
     width: 100%;
     height: 100%;
     display: flex;
