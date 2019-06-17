@@ -1,6 +1,6 @@
 {
   "rules": {
     ".read": true,
-    ".write": "auth != null && auth.token.email_verified == true && auth.token.email.matches(/.*@etowncolorado.com$/)"
+    ".write": true // "auth != null && auth.token.email_verified == true && auth.token.email.matches(/.*@etowncolorado.com$/)"
   }
 }

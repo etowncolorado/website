@@ -1,56 +1,73 @@
+import Vue from 'vue'
+
 export default (store, server) => {
-  const files = server.database().ref('/files')
+  const database = server.database()
+  const files = database.ref('/files')
+  const data = database.ref('/data')
 
   store.registerModule('finder', {
     namespaced: true,
 
     state: {
-      files: []
+      files: {},
+      data: {}
     },
 
     getters: {
-      find (state) {
-        return (key) => {
-          return state.files.find(
-            (file) => file.key === key
-          )
-        }
-      }
+      //
     },
 
     mutations: {
-      add (state, file) {
-        state.files.push(file)
+      watch (state, files) {
+        for (var key in files) {
+          Vue.set(state.files, key, { ...files[key] })
+        }
       },
 
-      remove (state, key) {
-        state.files = state.files.filter(
-          (file) => file.key !== key
-        )
-      }
-    },
-
-    actions: {
-      create (context, name) {
-        files.push({ name })
+      ignore (state, key) {
+        Vue.delete(state.files, key)
       },
 
-      trash (context, key) {
-        files.child(key).set(null)
+      write (state, data) {
+        for (var key in data) {
+          Vue.set(state.data, key, data[key])
+        }
+      },
+
+      clear (state, keys) {
+        Vue.delete(state.data, key)
       }
     }
   })
 
-  files.on('child_added',
-    (snap) => {
-      store.commit('finder/add', {
-        key: snap.key,
-        ...snap.val(),
-      })
-    }
-  )
+  var load = (ref, create, remove) => {
+    ref.once('value',
+      (snap) => {
+        var data = snap.val()
 
-  files.on('child_removed',
-    (snap) => store.commit('finder/remove', snap.key)
-  )
+        store.commit(`finder/${create}`, data)
+
+        snap.ref.on('child_added',
+          (snap) => snap.ref.on('value', write)
+        )
+
+        var write = (snap) => {
+          if (data[snap.key]) {
+            return data[snap.key] = null
+          }
+
+          if (snap.val() === null) {
+            return store.commit(`finder/${remove}`, snap.key)
+          }
+
+          store.commit(`finder/${create}`, {
+            [snap.key]: snap.val()
+          })
+        }
+      }
+    )
+  }
+
+  load(data, 'write', 'clear')
+  load(files, 'watch', 'ignore')
 }

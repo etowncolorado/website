@@ -2,29 +2,32 @@
   import { mapActions, mapState } from 'vuex'
 
   export default {
-    computed: {
-      ...mapState('finder', ['files'])
-    },
+    // computed: {
+    //   ...mapState('finder', ['files'])
+    // },
 
-    data () {
-      return {
-        selection: 'about'
-      }
-    },
+    // data () {
+    //   return {
+    //     selection: 'about'
+    //   }
+    // },
 
-    methods: {
-      ...mapActions('finder', ['create', 'trash']),
+    // methods: {
+    //   ...mapActions('finder', ['create', 'trash']),
 
-      select (key) {
-        this.selection = key
-      }
-    }
+    //   select (key) {
+    //     this.selection = key
+    //   }
+    // }
   }
 </script>
 
 
 <template>
-  <div :class="[$style.system, $style.module]" >
+  <div>
+    <finder root="-LhX-Bwwy9v1K5zpJw9s" />
+  </div>
+  <!-- <div :class="[$style.system, $style.module]" >
     <editor
       v-bind:active="selection"
       v-bind:files="files"
@@ -32,7 +35,7 @@
       v-on:create="create('untitled')"
       v-on:close="trash"
     />
-  </div>
+  </div> -->
 </template>
 
 <style module>

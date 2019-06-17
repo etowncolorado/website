@@ -1,35 +1,32 @@
 <script>
   export default {
-    props: ['selection'],
-
-    data () {
-      return {
-        items: ['about', 'contact', 'log']
+    props: {
+      root: {
+        type: String,
+        required: true
       }
     },
 
-    methods: {
-      select (value) {
+    computed: {
+      file () {
+        return this.$store.state.finder.files[this.root]
+      },
 
+      data () {
+        return this.$store.state.finder.data[this.file.data]
       }
     }
   }
 </script>
 
 <template>
-  <div :class="$style.explorer">
-    <div :class="$style.header">
+  <div v-bind:class="$style.explorer">
+    <div v-bind:class="$style.header">
       <div>explorer</div>
     </div>
 
-    <div :class="$style.list">
-      <div
-        v-for="item in items"
-        v-text="item"
-        :class="item === selection && $style.item"
-        :key="item"
-        @click="$emit('select', item)"
-      />
+    <div v-if="file" v-bind:class="$style.list">
+      <file v-bind:root="root" />
     </div>
   </div>
 </template>
