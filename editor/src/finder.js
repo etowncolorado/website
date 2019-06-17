@@ -37,6 +37,21 @@ export default (store, server) => {
       clear (state, keys) {
         Vue.delete(state.data, key)
       }
+    },
+
+    actions: {
+      create (context, file) {
+        console.log(file)
+        data.child(file.data).set(
+          file.files.concat(
+            files.push({
+              name: file.name,
+              type: 1,
+              data: data.push('').key
+            }).key
+          )
+        )
+      }
     }
   })
 

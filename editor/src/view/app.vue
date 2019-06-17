@@ -2,6 +2,9 @@
   import { mapActions, mapState } from 'vuex'
 
   export default {
+    // mounted () {
+    
+    // }
     // computed: {
     //   ...mapState('finder', ['files'])
     // },
@@ -24,7 +27,7 @@
 
 
 <template>
-  <div>
+  <div v-bind:class="[$style.system, $style.module]">
     <finder root="-LhX-Bwwy9v1K5zpJw9s" />
   </div>
   <!-- <div :class="[$style.system, $style.module]" >
