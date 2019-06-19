@@ -1,8 +1,6 @@
 import firebase from 'firebase/app'
-import 'firebase/database'
-import 'firebase/auth'
 
-export default firebase.initializeApp({
+var app = firebase.initializeApp({
   apiKey: "AIzaSyBySZNEwPsMIFCJL8bXo8zYv-MSFEOaWII",
   authDomain: "etowncolorado-website.firebaseapp.com",
   databaseURL: "https://etowncolorado-website.firebaseio.com",
@@ -11,3 +9,5 @@ export default firebase.initializeApp({
   messagingSenderId: "155712937603",
   appId: "1:155712937603:web:e624e9971e7cf05d"
 })
+
+export default app

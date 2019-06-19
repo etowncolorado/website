@@ -21,7 +21,7 @@
       "rewrites": [
         {
           "source": "**",
-          "function": "content"
+          "function": "deliver"
         }
       ],
       "ignore": [
@@ -36,7 +36,7 @@
       "rewrites": [
         {
           "source": "**",
-          "function": "request"
+          "function": "compile"
         }
       ],
       "ignore": [

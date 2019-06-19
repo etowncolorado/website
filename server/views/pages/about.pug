@@ -1,0 +1,51 @@
+extends ../layouts/master
+
+append content
+  main
+    header
+      h1 A relaxing environment with great food, great drinks and great people.
+      p For over 10 years e|town has been providing a warm and inviting place where delicious meals are prepared, and friends and family gather. With a passion for pure flavor, we create a menu of diverse, approachable, ingredient-driven plates prepared from scratch.
+      figure
+        img(src='http://placekitten.com/400/300')
+
+    section
+      figure
+        img(src='http://placekitten.com/400/300')
+      h2 A Colorado favorite located in the heart of Edwards, Colorado.
+      p With a passion for consistently delicious cuisine, prepared with love by amazing people,served in an environment that makes our guests feel welcome dressed up or winding down.
+      p
+        a(href='/') Learn more
+
+    section
+      figure
+        blockquote(cite='http://google.com')
+          p Atmosphere is always lively, happy hour is on point, and I've always had an amazing meal with wonderful service.
+        figcaption
+          address
+            a(href='/') Taylor P.
+            |  Avon, Colorado
+
+    section.container
+      figure
+        img(src='http://placekitten.com/400/300')
+      h2 Seared Sesame Tuna
+      p A beautifully seared tuna with wasabi potato cake, crab guacamole, tempura battered asparagus in an orange ginger sauce.
+      p
+        a(href='/') See full menu
+
+    section
+      article
+        time(datetime='2008-02-14 20:00') November 21, 2017
+        h3 We have a new website!
+        p It has a been a labor of love but we have a new website!
+        a(href='/') Read more
+      article
+        time(datetime='2008-02-14 20:00') November 21, 2017
+        h3 We have a new website!
+        p It has a been a labor of love but we have a new website!
+        a(href='/') Read more
+
+append aside
+  aside
+    h4 Learn more about what's new at e|town.
+    a(href='/') Our blog
