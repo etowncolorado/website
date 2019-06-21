@@ -1,0 +1,13 @@
+extends ../layouts/master
+
+append title
+  |  - blog
+
+append content
+  main
+    header
+      h1 Blog
+  
+  section
+    a(href="/blog/foo") foo
+    a(href="/blog/bar") bar

@@ -1,37 +1,9 @@
-var functions = require('firebase-functions')
-var express = require('express')
-var app = require('../app.js')
+var application = require('../providers/application')
+var https = require('../providers/https')
 
-var deliver = express()
-var maxage = 'public, max-age=300, s-maxage=31536000'
+var app = application('deliver')
 
-deliver.get('/test',
-  (request, response) => {
-    var timestamp = Date.now().toString()
-    
-    console.log(timestamp)
-    console.log(maxage)
+app.get('/test', 'files@test')
+app.get('*', 'files@cache')
 
-    response.set('Cache-Control', maxage)
-    response.send(timestamp)
-  }
-)
-
-deliver.get('*',
-  async (request, response) => {
-    try {
-      var file = app.storage().bucket().file(request.path)
-      var metadata = await file.getMetadata()
-      response.set('Access-Control-Allow-Origin', '*')
-      response.set('Cache-Control', maxage)
-      response.set('Content-Type', metadata[0].contentType)
-      file.createReadStream().pipe(response)
-    } catch (error) {
-      console.log(request.path)
-      console.log(error)
-      response.status(404).send()
-    }
-  }
-)
-
-module.exports = functions.https.onRequest(deliver)
+module.exports = https().onRequest(app)

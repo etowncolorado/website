@@ -1,4 +1,4 @@
-var functions = require('firebase-functions')
+var storage = require('../providers/storage')
 var request = require('request-promise')
 
 var host = 'https://etowncolorado-content.web.app/'
@@ -11,4 +11,4 @@ var purge = (object) => {
   return request(url, opt)
 }
 
-module.exports = functions.storage.object().onFinalize(purge)
+module.exports = storage().onFinalize(purge)

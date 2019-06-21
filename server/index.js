@@ -1,3 +1,10 @@
+var functions = require('firebase-functions')
+var admin = require('firebase-admin')
+admin.initializeApp()
+
+console.log(admin.app().database())
+console.log('asdfasd')
+
 var finder = require('fs')
 var path = require('path')
 
