@@ -1,16 +1,3 @@
-var finder = require('fs')
-var path = require('path')
+process.env.ENV = process.env.GCLOUD_PROJECT.split('-').pop()
 
-var folder = path.resolve(__dirname, 'triggers')
-var files = finder.readdirSync(folder)
-
-var register = (name, path) => {
-  exports[name] = require(path)
-}
-
-files.forEach(
-  (name) => register(
-    name.replace('.js', ''),
-    path.resolve(folder, name)
-  )
-)
+exports.serve = require('./triggers/serve')
