@@ -10,7 +10,7 @@ app.set('view engine', 'pug')
 app.use('gzip-compression')
 app.use('cache-forever')
 app.use('remote-storage')
-app.use('store')
+// app.use('store')
 
 app.get('/', 'pages@about')
 app.get('/blog', 'posts@index')
