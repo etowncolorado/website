@@ -1,0 +1,15 @@
+:root {
+  --color-1: black;
+  --color-2: white;
+  --color-3: red;
+}
+
+.dark {
+  --background-color: var(--color-1);
+  --foreground-color: var(--color-2);
+}
+
+.light {
+  --background-color: var(--color-3);
+  --foreground-color: var(--color-2);
+}

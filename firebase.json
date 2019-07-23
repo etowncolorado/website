@@ -6,13 +6,7 @@
     "source": "server"
   },
   "hosting": {
-    "public": "public",
-    "rewrites": [
-      {
-        "source": "**",
-        "function": "serve"
-      }
-    ],
+    "public": "server/public",
     "ignore": [
       "firebase.json",
       "**/.*",
