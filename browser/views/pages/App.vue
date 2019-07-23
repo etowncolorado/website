@@ -11,15 +11,21 @@
 </script>
 
 <template>
-  <span id="app">
+  <span :class="[$design.themes.light, $style.root]">
     <nav-1 :pages="$store.state.pages" />
     <router-view />
-    <nav-2 :pages="$store.state.pages" />
+    <nav-2 :class="$style.footer" :pages="$store.state.pages" />
   </span>
 </template>
 
-<style>
+<style module>
   .root {
-    display: block;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  .footer {
+    flex: 1;
   }
 </style>

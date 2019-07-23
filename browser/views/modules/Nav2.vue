@@ -1,5 +1,13 @@
 <script>
+  import Links2 from '@/views/components/Links2.vue'
+  import Form1 from '@/views/components/Form1.vue'
+
   export default {
+    components: {
+      Links2,
+      Form1,
+    },
+
     props: {
       pages: {
         type: Array,
@@ -10,32 +18,40 @@
 </script>
 
 <template>
-  <footer :class="$style.root">
-    <section :class="$style.column">
-      <div>
-        Facebook
-      </div>
+  <footer :class="[$design.themes.dark, $style.root]">
+    <section :class="$style.section">
+      <form-1 :class="$style.column" />
+      <links-2 :class="$style.column" :links="pages" />
     </section>
 
-    <section :class="$style.column">
-      <nav>
-        <router-link v-for="page in pages" :to="page.path" :key="page.path">
-          {{ page.label }}
-        </router-link>
-      </nav>
+    <section :class="$style.section">
+      <div :class="$style.column">
+        Facebook
+      </div>
+
+      <div :class="$style.column">
+        Contacts
+      </div>
     </section>
   </footer>
 </template>
 
 <style module>
   .root {
-    display: flex;
+    color: var(--foreground-color);
     padding-top: 3rem;
+    padding-bottom: 4rem;
+    background-color: var(--background-color);
+  }
+
+  .section {
+    display: flex;
     justify-content: center;
   }
 
   .column {
     width: 28rem;
+    padding: 0 2rem;
     box-sizing: border-box;
   }
 </style>

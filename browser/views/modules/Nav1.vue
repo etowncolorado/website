@@ -1,5 +1,11 @@
 <script>
+  import Links1 from '@/views/components/Links1.vue'
+
   export default {
+    components: {
+      Links1
+    },
+
     props: {
       pages: {
         type: Array,
@@ -15,11 +21,7 @@
       <img :class="$style.logo" src="@/assets/images/etown-logo.svg" alt="E-town Logo">
     </router-link>
 
-    <nav :class="[$style.column, $style.nav]">
-      <router-link v-for="page in pages" :class="$style.link" :to="page.path" :key="page.path" :exact-active-class="$style.active">
-        {{ page.label }}
-      </router-link>
-    </nav>
+    <links-1 :class="[$style.column, $style.nav]" :links="pages" />
   </header>
 </template>
 
@@ -28,6 +30,7 @@
   .root {
     display: flex;
     padding-top: 3rem;
+    padding-bottom: 0.25rem;
     justify-content: center;
   }
 
@@ -41,31 +44,6 @@
   }
 
   .nav {
-    display: flex;
     padding: 0 2rem;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .link {
-    position: relative;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.8125rem;
-    line-height: 2rem;
-    letter-spacing: 0.1rem;
-    color: var(--foreground-color);
-    font-family: "Montserrat", sans-serif;
-  }
-
-  .active:after {
-    left: 0;
-    right: 0.125rem;
-    bottom: 0.125rem;
-    height: 0.125rem;
-    content: " ";
-    position: absolute;
-    background: #c02727;
   }
 </style>

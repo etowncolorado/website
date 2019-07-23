@@ -1,9 +1,9 @@
 <script>
-  import title from '@/mixins/title.js'
+  import Title from '@/mixins/Title.js'
 
   export default {    
     mixins: [
-      title
+      Title
     ],
 
     created () {
