@@ -5,47 +5,14 @@
   "functions": {
     "source": "server"
   },
-  "hosting": [
-    {
-      "target": "editor",
-      "public": "editor/dist",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ]
-    },
-    {
-      "target": "content",
-      "public": "content/dist",
-      "rewrites": [
-        {
-          "source": "**",
-          "function": "deliver"
-        }
-      ],
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ]
-    },
-    {
-      "target": "website",
-      "public": "website/dist",
-      "rewrites": [
-        {
-          "source": "**",
-          "function": "compile"
-        }
-      ],
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ]
-    }
-  ],
+  "hosting": {
+    "public": "server/public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
   "storage": {
     "rules": "storage.rules"
   }
