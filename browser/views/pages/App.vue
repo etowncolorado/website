@@ -11,7 +11,7 @@
 </script>
 
 <template>
-  <span :class="[$design.themes.light, $style.root]">
+  <span :class="[$design.themes.light, $style.root, 'test-2']">
     <nav-1 :pages="$store.state.pages" />
     <router-view />
     <nav-2 :class="$style.footer" :pages="$store.state.pages" />

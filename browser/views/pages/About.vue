@@ -1,5 +1,6 @@
 <script>
   import Section1 from '@/views/modules/Section1.vue'
+  import Section2 from '@/views/modules/Section2.vue'
   import Title from '@/mixins/Title.js'
 
   export default {   
@@ -9,6 +10,7 @@
 
     components: {
       Section1,
+      Section2,
     },
 
     created () {
@@ -20,5 +22,6 @@
 <template>
   <section>
     <section-1 />
+    <section-2 :class="$design.themes.dark" />
   </section>
 </template>
