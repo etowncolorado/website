@@ -2,15 +2,12 @@
 import Vue from 'vue'
 
 // Project
-import design from '@/entries/design.js'
 import router from '@/entries/router.js'
 import store from '@/entries/store.js'
 import App from '@/views/pages/App.vue'
-import '@/design/reset.css'
 
 // Config
 Vue.config.productionTip = false
-Vue.prototype.$design = design
 
 // Setup
 export const render = (h) => h(App)

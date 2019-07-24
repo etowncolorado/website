@@ -7,6 +7,11 @@
     },
 
     props: {
+      isCompact: {
+        type: Boolean,
+        default: false
+      },
+
       pages: {
         type: Array,
         required: true
@@ -21,7 +26,7 @@
       <img :class="$style.logo" src="@/assets/images/etown-logo.svg" alt="E-town Logo">
     </router-link>
 
-    <links-1 :class="[$style.column, $style.nav]" :links="pages" />
+    <links-1 v-if="!isCompact" :class="[$style.column, $style.nav]" :links="pages" />
   </header>
 </template>
 

@@ -13,12 +13,24 @@
         type: Array,
         required: true
       }
+    },
+
+    data () {
+      return {
+        hover: true,
+      }
+    },
+
+    methods: {
+      toggle () {
+        this.hover = !this.hover
+      }
     }
   }
 </script>
 
 <template>
-  <footer :class="[$design.themes.dark, $style.root]">
+  <footer :class="[hover ? 'dark' : 'light', $style.root]">
     <section :class="$style.section">
       <form-1 :class="$style.column" />
       <links-2 :class="$style.column" :links="pages" />
@@ -29,7 +41,7 @@
         Facebook
       </div>
 
-      <div :class="$style.column">
+      <div :class="$style.column" @click="toggle">
         Contacts
       </div>
     </section>
