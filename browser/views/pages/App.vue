@@ -9,15 +9,11 @@
       Nav1,
       Nav2,
     },
-
-    created () {
-      console.log(this.$system)
-    }
   }
 </script>
 
 <template>
-  <span class="light">
+  <span :class="[$theme.light, $typography.antialias, $typography.fonts]">
     <Screen/>
     <Nav1/>
     <RouterView/>
@@ -25,12 +21,10 @@
   </span>
 </template>
 
-<style src="@/design/system.scss" lang="scss"></style>
-<style src="@/design/system.css" module="$system"></style>
-<style src="@/design/themes.css" module="$themes"></style>
+<style src="@/design/reset.css"></style>
+<style module="$typography" src="@/design/typography.css"></style>
+<style module="$theme" src="@/design/themes.css"></style>
 <style module>
-  /* container from "@/design/system.css"; */
-
   .root {
     display: flex;
     min-height: 100vh;

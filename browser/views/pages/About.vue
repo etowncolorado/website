@@ -22,6 +22,8 @@
 <template>
   <section>
     <section-1 />
-    <section-2 class="dark" />
+    <section-2 :class="$theme.dark" />
   </section>
 </template>
+
+<style module="$theme" src="@/design/themes.css"></style>

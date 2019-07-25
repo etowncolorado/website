@@ -1,0 +1,33 @@
+:root {
+  --font-1: "Sentinel SSm A", "Sentinel SSm B", serif;
+  --font-2: "Montserrat", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.antialias {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  font-feature-settings:"kern" 1;
+  font-feature-settings: "liga" off;
+  font-feature-settings: "dlig" off;
+  font-feature-settings: "tnum" off;
+  font-feature-settings: "onum" off;
+  font-feature-settings: "ss01" off;
+}
+
+.style1 {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 2.75rem;
+  font-family: var(--font-1);
+  letter-spacing: 0.0625rem;
+}
+
+.style2 {
+  font-size: 0.75rem;
+  font-weight: 300;
+  line-height: 1.375rem;
+  font-family: var(--font-2);
+  letter-spacing: 0.015625rem;
+}

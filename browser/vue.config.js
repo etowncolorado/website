@@ -1,5 +1,3 @@
-const PurgecssPlugin = require('purgecss-webpack-plugin')
-const glob = require('glob-all')
 const path = require('path')
 
 const configureWebpack = (config) => ({
@@ -10,15 +8,6 @@ const configureWebpack = (config) => ({
       '@': path.resolve(__dirname)
     }
   },
-
-  plugins: [
-    new PurgecssPlugin({
-      paths: glob.sync([
-        path.resolve(__dirname, './**/*.html'),
-        path.resolve(__dirname, './**/*.vue'),
-      ])
-    })
-  ]
 })
 
 module.exports = {
