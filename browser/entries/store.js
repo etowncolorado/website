@@ -26,7 +26,7 @@ export default new Vuex.Store({
 
   getters: {
     isCompact: (state) => {
-      return state.screen.width < 800
+      return state.screen.size.width < 800
     }
   },
 

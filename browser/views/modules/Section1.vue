@@ -1,18 +1,13 @@
-<script>
-  import Links1 from '@/views/components/Links1.vue'
-
-  export default {
-    components: {
-      Links1
-    }
-  }
-</script>
-
 <template>
   <main :class="$style.root">
     <section :class="[$style.column, $style.content]">
-      <h1 :class="$style.title">A relaxing environment with great food, great drinks and great people.</h1>
-      <p :class="$style.text">For over 10 years e|town has been providing a warm and inviting place where delicious meals are prepared, and friends and family gather. With a passion for pure flavor, we create a menu of diverse, approachable, ingredient-driven plates prepared from scratch.</p>
+      <h1 :class="$style.title">
+        A relaxing environment with great food, great drinks and great people.
+      </h1>
+
+      <p :class="$style.text">
+        For over 10 years e|town has been providing a warm and inviting place where delicious meals are prepared, and friends and family gather. With a passion for pure flavor, we create a menu of diverse, approachable, ingredient-driven plates prepared from scratch.
+      </p>
     </section>
 
     <figure :class="[$style.column, $style.figure]">

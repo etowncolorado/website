@@ -6,34 +6,15 @@
     components: {
       Links2,
       Form1,
-    },
-
-    props: {
-      pages: {
-        type: Array,
-        required: true
-      }
-    },
-
-    data () {
-      return {
-        hover: true,
-      }
-    },
-
-    methods: {
-      toggle () {
-        this.hover = !this.hover
-      }
     }
   }
 </script>
 
 <template>
-  <footer :class="[hover ? 'dark' : 'light', $style.root]">
+  <footer :class="[$theme.dark, $style.root]">
     <section :class="$style.section">
-      <form-1 :class="$style.column" />
-      <links-2 :class="$style.column" :links="pages" />
+      <form-1 :class="$style.column"/>
+      <links-2 :class="$style.column"/>
     </section>
 
     <section :class="$style.section">
@@ -41,13 +22,14 @@
         Facebook
       </div>
 
-      <div :class="$style.column" @click="toggle">
+      <div :class="$style.column">
         Contacts
       </div>
     </section>
   </footer>
 </template>
 
+<style module="$theme" src="@/design/themes.css"></style>
 <style module>
   .root {
     color: var(--foreground-color);

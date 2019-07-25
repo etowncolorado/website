@@ -1,18 +1,13 @@
-<script>
-  import Links1 from '@/views/components/Links1.vue'
-
-  export default {
-    components: {
-      Links1
-    }
-  }
-</script>
-
 <template>
   <main :class="$style.root">
     <section :class="[$style.column, $style.content]">
-      <h1 :class="$style.title">A Colorado favorite located in the heart of Edwards, Colorado.</h1>
-      <p :class="$style.text">With a passion for consistently delicious cuisine, prepared with love by amazing people,served in an environment that makes our guests feel welcome dressed up or winding down.</p>
+      <h1 :class="$style.title">
+        A Colorado favorite located in the heart of Edwards, Colorado.
+      </h1>
+
+      <p :class="$style.text">
+        With a passion for consistently delicious cuisine, prepared with love by amazing people,served in an environment that makes our guests feel welcome dressed up or winding down.
+      </p>
     </section>
 
     <figure :class="[$style.column, $style.figure]">

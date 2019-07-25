@@ -1,18 +1,8 @@
-<script>
-  export default {
-    props: {
-      links: {
-        type: Array,
-        required: true
-      }
-    }
-  }
-</script>
 
 <template>
   <nav :class="$style.root">
     <router-link
-      v-for="link in links"
+      v-for="link in $store.state.pages"
       v-text="link.label"
       :to="link.path"
       :key="link.path"
