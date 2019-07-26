@@ -6,7 +6,7 @@
   .root {
     width: 0.125rem;
     margin: 0 -0.0625rem;
-    background-color: var(--accent-color);
+    background-color: #c02727;
   }
 </style>
 
