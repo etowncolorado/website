@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "dependencies": {
     "esm": "^3.2.25",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "rxjs": "^6.5.2"
   }
 }
